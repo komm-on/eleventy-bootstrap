@@ -16,6 +16,45 @@ layout: main
         <p class="lead">{{ teaser }}</p>
         {{ content }}
       </div>
+
+      <div class="row mt-3">
+        <div class="col text-start">
+          {%
+            assign nextPost =
+              collections.blog-post | getNextCollectionItem
+          %}
+          {% if nextPost %}
+          <a
+            href="{{ nextPost.url }}"
+            class="
+              btn btn-outline-primary h-100
+              d-inline-flex align-items-center gap-1
+            "
+          >
+            <i class="bi-arrow-left"></i>
+            {{ nextPost.data.title }}
+          </a>
+          {% endif %}
+        </div>
+        <div class="col text-end">
+          {%
+            assign previousPost =
+              collections.blog-post | getPreviousCollectionItem
+          %}
+          {% if previousPost %}
+          <a
+            href="{{ previouusPost.url }}"
+            class="
+              btn btn-outline-primary h-100
+              d-inline-flex align-items-center gap-1
+            "
+          >
+            {{ previousPost.data.title }}
+            <i class="bi-arrow-right"></i>
+          </a>
+          {% endif %}
+        </div>
+      </div>
     </div>
   </div>
 </div>
